@@ -1,11 +1,10 @@
-body{
+body {
   background-color: black;
 }
 
 .scoreboard {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  width: 300px;
   font-family: 'Courier New', Courier, monospace;
 }
 
@@ -13,6 +12,10 @@ body{
 .scoreboard__score {
   padding: 10px;
   text-align: center;
+}
+
+.scoreboard__score {
+  color: whitesmoke;
 }
 
 .scoreboard__name {
@@ -34,6 +37,8 @@ body{
 
 .scoreboard__controls {
   display: flex;
+  justify-content: center; /* Add this line to center the controls */
+  align-items: center; /* Add this line to center the controls */
 }
 
 .scoreboard__controls-button {
@@ -88,18 +93,18 @@ body{
   cursor: pointer;
 }
 
-.player-circle[contenteditable="true"] {
+.player-circle[contenteditable='true'] {
   border: 1px solid #009578;
 }
 
-input[type="text"] {
+input[type='text'] {
   width: 20px; /* Match the width of the circles */
   height: 20px; /* Match the height of the circles */
   text-align: center; /* Center the text */
   font-size: 0.8em; /* Match the font size of the circles */
 }
 
-#save-numbers{
+#save-numbers {
   display: block;
   margin: 10px auto;
   padding: 5px;
@@ -107,5 +112,4 @@ input[type="text"] {
   color: white;
   border: none;
   cursor: pointer;
-
 }
