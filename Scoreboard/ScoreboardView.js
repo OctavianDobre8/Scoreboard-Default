@@ -16,11 +16,13 @@ export default class ScoreboardView {
           <button class="scoreboard__control-button">+</button>
         </div>
         <div id="team-one" class="team">
-          ${Array(11).fill('<div class="player-circle"></div>').join('')}
+          ${Array(11).fill('<div class="player-circle">0</div>').join('')}
         </div>
         <div id="team-two" class="team">
-          ${Array(11).fill('<div class="player-circle"></div>').join('')}
+          ${Array(11).fill('<div class="player-circle">0</div>').join('')}
         </div>
+        <button id="edit-numbers">Editeaza Numerele</button>
+        <button id="save-numbers">Salveaza</button>
       </div>
     `;
     this.root

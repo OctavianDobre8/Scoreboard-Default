@@ -1,4 +1,6 @@
-
+body{
+  background-color: black;
+}
 
 .scoreboard {
   display: grid;
@@ -43,10 +45,10 @@
 }
 
 .team {
-  position: relative; /* make the teams a relative container */
+  position: relative;
   display: flex;
-  flex-direction: row; /* align children in a row */
-  justify-content: space-around; /* distribute space evenly between children */
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .team:not(.active) .player-circle {
@@ -54,17 +56,56 @@
 }
 
 .player-circle {
-  position: relative; /* position the player circles relatively within the teams */
-  width: 10px; /* smaller size */
-  height: 10px; /* smaller size */
+  position: relative;
+  width: 20px; /* Increase the size of the circles */
+  height: 20px; /* Increase the size of the circles */
   border-radius: 50%;
-  background-color: #008000; /* green color */
-  margin: 5px; /* add space between the player circles */
+  background-color: #008000;
+  margin: 5px;
+  display: flex; /* Add these lines to center the text */
+  justify-content: center; /* Add these lines to center the text */
+  align-items: center; /* Add these lines to center the text */
+  font-size: 0.8em; /* Decrease the font size */
 }
+
 .team-one .player-circle {
-  left: 0; /* position the player circles on the left side of team one */
+  left: 0;
 }
 
 .team-two .player-circle {
-  right: 0; /* position the player circles on the right side of team two */
+  right: 0;
+}
+
+/* New CSS */
+
+#edit-numbers {
+  display: block;
+  margin: 10px auto;
+  padding: 5px;
+  background-color: #009578;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.player-circle[contenteditable="true"] {
+  border: 1px solid #009578;
+}
+
+input[type="text"] {
+  width: 20px; /* Match the width of the circles */
+  height: 20px; /* Match the height of the circles */
+  text-align: center; /* Center the text */
+  font-size: 0.8em; /* Match the font size of the circles */
+}
+
+#save-numbers{
+  display: block;
+  margin: 10px auto;
+  padding: 5px;
+  background-color: #009578;
+  color: white;
+  border: none;
+  cursor: pointer;
+
 }

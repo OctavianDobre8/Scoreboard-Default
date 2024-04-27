@@ -7,10 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('app');
   const view = new ScoreboardView(
     root,
-    'Player One',
-    'Player Two',
+    'Echipa 1',
+    'Echipa 2',
     (player, direction) => {
-      //update the score
+      // Update the score
       const difference = direction === 'minus' ? -1 : 1;
 
       if (player === 'one') {
@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         playerTwoScore = Math.max(playerTwoScore + difference, 0);
       }
 
+      // Update the view with the new scores
       view.update(playerOneScore, playerTwoScore);
     }
   );
@@ -26,51 +27,79 @@ document.addEventListener('DOMContentLoaded', () => {
   let teamOneAttacks = 0;
   let teamTwoAttacks = 0;
 
-  //add event listeners to the circles
-  document.querySelectorAll('.player-circle').forEach(circle => {
-    circle.addEventListener('click', () => {
-      circle.style.backgroundColor = 'red';
-      //increment the attack count for the active team
-      if (circle.parentNode.id === 'team-one') {
-        teamOneAttacks++;
-      } else {
-        teamTwoAttacks++;
-      }
+  // Function to setup event listeners for the circles
+  function setupCircleEventListeners() {
+    // Add event listeners to the circles
+    document.querySelectorAll('.player-circle').forEach(circle => {
+      circle.addEventListener('click', () => {
+        // Only change the circle if it belongs to the active team
+        if (circle.parentNode.classList.contains('active')) {
+          circle.style.backgroundColor = 'red';
+          // Increment the attack count for the active team
+          if (circle.parentNode.id === 'team-one') {
+            teamOneAttacks++;
+          } else {
+            teamTwoAttacks++;
+          }
 
-      //switch the active team if all player have attacked
-      if (teamOneAttacks >= 11 || teamTwoAttacks >= 11) {
-        switchTeams();
-      }
+          // Switch the active team if all players have attacked
+          if (teamOneAttacks >= 11 || teamTwoAttacks >= 11) {
+            switchTeams();
+          }
+        }
+      });
     });
-  });
+  }
 
-  //the function to switch teams
+  // Call the function at the beginning
+  setupCircleEventListeners();
+
+  // The function to switch teams
   function switchTeams() {
     const teamOne = document.getElementById('team-one');
     const teamTwo = document.getElementById('team-two');
     teamOne.classList.toggle('active');
     teamTwo.classList.toggle('active');
 
-    //copy the player circles from the non-active team to the active team and remove the original ones
+    // Reset the attack count for the new active team
     if (teamOne.classList.contains('active')) {
-      const teamTwoCircles = Array.from(teamTwo.querySelectorAll('.player-circle'));
-      teamTwoCircles.forEach(circle => {
-        const clone = circle.cloneNode(true);
-        teamOne.appendChild(clone);
-        teamTwo.removeChild(circle);
-      });
       teamTwoAttacks = 0;
     } else {
-      const teamOneCircles = Array.from(teamOne.querySelectorAll('.player-circle'));
-      teamOneCircles.forEach(circle => {
-        const clone = circle.cloneNode(true);
-        teamTwo.appendChild(clone);
-        teamOne.removeChild(circle);
-      });
       teamOneAttacks = 0;
     }
   }
 
   // Make the first team active initially
   document.getElementById('team-one').classList.add('active');
+
+  // Add event listener to the "Edit Numbers" button
+  document.getElementById('edit-numbers').addEventListener('click', () => {
+    // Create a textbox for each circle
+    document.querySelectorAll('.player-circle').forEach(circle => {
+      const textbox = document.createElement('input');
+      textbox.type = 'text';
+      textbox.value = circle.textContent;
+      textbox.size = 1; // Make the textbox small
+      textbox.maxLength = 2; // Limit input to two characters
+
+      // Replace the circle with the textbox
+      circle.parentNode.replaceChild(textbox, circle);
+    });
+  });
+
+  // Add event listener to the "Save Numbers" button
+  document.getElementById('save-numbers').addEventListener('click', () => {
+    // Replace each textbox with a circle
+    document.querySelectorAll('input[type="text"]').forEach(textbox => {
+      const circle = document.createElement('div');
+      circle.className = 'player-circle';
+      circle.textContent = textbox.value;
+
+      // Replace the textbox with the circle
+      textbox.parentNode.replaceChild(circle, textbox);
+    });
+
+    // Set up the event listeners for the new circles
+    setupCircleEventListeners();
+  });
 });
