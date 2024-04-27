@@ -1,3 +1,5 @@
+
+
 .scoreboard {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -38,4 +40,31 @@
   background-color: #eee;
   cursor: pointer;
   font-size: 1.2em;
+}
+
+.team {
+  position: relative; /* make the teams a relative container */
+  display: flex;
+  flex-direction: row; /* align children in a row */
+  justify-content: space-around; /* distribute space evenly between children */
+}
+
+.team:not(.active) .player-circle {
+  display: none;
+}
+
+.player-circle {
+  position: relative; /* position the player circles relatively within the teams */
+  width: 10px; /* smaller size */
+  height: 10px; /* smaller size */
+  border-radius: 50%;
+  background-color: #008000; /* green color */
+  margin: 5px; /* add space between the player circles */
+}
+.team-one .player-circle {
+  left: 0; /* position the player circles on the left side of team one */
+}
+
+.team-two .player-circle {
+  right: 0; /* position the player circles on the right side of team two */
 }
