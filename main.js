@@ -102,4 +102,44 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set up the event listeners for the new circles
     setupCircleEventListeners();
   });
+
+  // Add event listener to the team names
+  document.querySelectorAll('.scoreboard__name').forEach(name => {
+    name.addEventListener('click', () => {
+      // Create a textbox with the current name
+      const textbox = document.createElement('input');
+      textbox.type = 'text';
+      textbox.value = name.textContent;
+      textbox.style.width = '100px'; // Set the width
+      textbox.style.height = '20px'; // Set the height
+      textbox.style.textAlign = 'center'; // Center the text
+      textbox.style.color = 'white'; // Set the text color
+      textbox.style.backgroundColor = 'transparent'; // Set the background color
+      textbox.style.border = 'none'; // Remove the border
+      textbox.style.outline = 'none'; // Remove the outline
+
+      // Replace the name with the textbox
+      name.parentNode.replaceChild(textbox, name);
+
+      // Focus the textbox and select the text
+      textbox.focus();
+      textbox.select();
+
+      // Save the new name when Enter is pressed
+      textbox.addEventListener('keydown', event => {
+        if (event.key === 'Enter') {
+          // Prevent form submission
+          event.preventDefault();
+
+          // Replace the textbox with the name
+          const newName = document.createElement('div');
+          newName.className = 'scoreboard__name';
+          newName.textContent = textbox.value;
+          newName.style.color = 'white'; // Set the text color
+
+          textbox.parentNode.replaceChild(newName, textbox);
+        }
+      });
+    });
+  });
 });

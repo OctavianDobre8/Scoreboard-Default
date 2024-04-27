@@ -21,6 +21,7 @@ body {
 .scoreboard__name {
   font-weight: bold;
   border-bottom: 1px solid #ddd;
+  cursor: pointer; /* Change the cursor to a pointer */
 }
 
 .scoreboard__name--one {
@@ -112,4 +113,15 @@ input[type='text'] {
   color: white;
   border: none;
   cursor: pointer;
+}
+
+#team-one-name input[type='text'],
+#team-two-name input[type='text'] {
+  width: 100px; /* Increase the width of the textbox */
+  height: 20px; /* Increase the height of the textbox */
+  text-align: center; /* Center the text */
+  color: white; /* Make the text color white */
+  background-color: transparent; /* Make the background transparent */
+  border: none; /* Remove the border */
+  outline: none; /* Remove the outline */
 }

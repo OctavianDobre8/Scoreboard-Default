@@ -3,8 +3,8 @@ export default class ScoreboardView {
     this.root = root;
     this.root.innerHTML = `
       <div class="scoreboard">
-        <div class="scoreboard__name scoreboard__name--one">${playerOneName}</div>
-        <div class="scoreboard__name scoreboard__name--two">${playerTwoName}</div>
+        <div id="team-one-name" class="scoreboard__name scoreboard__name--one">${playerOneName}</div>
+        <div id = "team-two-name" class="scoreboard__name scoreboard__name--two">${playerTwoName}</div>
         <div class="scoreboard__score" data-for-player = "one">0</div>
         <div class="scoreboard__score" data-for-player = "two">0</div>
         <div class="scoreboard__controls" data-for-player = "one">
