@@ -10,13 +10,14 @@ body {
 }
 
 .round-indicator {
-  color: white;
+  color: orange;
   text-align: center;
   margin: 10px 0;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-size: 7vw;
 }
 
 .scoreboard {
@@ -29,7 +30,7 @@ body {
 .scoreboard__score {
   padding: 20px;
   text-align: center;
-  font-size: max(5vw, 36px);
+  font-size: 8vw;
 }
 
 .scoreboard__name {
@@ -39,31 +40,18 @@ body {
 }
 
 .scoreboard__name--one {
-  color: whitesmoke;
+  color: orange;
 }
 
 .scoreboard__name--two {
-  color: whitesmoke;
+  color: orange;
 }
 
 .scoreboard__score {
-  color: whitesmoke;
-  font-size: 5em;
+  color: orange;
+  font-size: 8em;
 }
 
-.scoreboard__controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.scoreboard__controls-button {
-  flex-grow: 1;
-  border: none;
-  background-color: #eee;
-  cursor: pointer;
-  font-size: 1.2em;
-}
 
 .team {
   position: relative;
@@ -72,11 +60,6 @@ body {
   align-items: center;
 }
 
-.team-text {
-  color: white;
-  text-align: center;
-  margin-bottom: 10px;
-}
 
 .team-circles {
   display: flex;
@@ -89,8 +72,8 @@ body {
 
 .player-circle {
   position: relative;
-  width: 10px;
-  height: 10px;
+  width: 2vw;
+  height: 2vw;
   border-radius: 50%;
   background-color: #008000;
   margin: 5px;
@@ -137,10 +120,10 @@ input[type='text'] {
 }
 
 .outline-circle {
-  width: 10px;
-  height: 10px;
+  width: 2vw;
+  height: 2vw;
   border-radius: 50%;
-  border: 1px solid white;
+  border: 1px solid red;
   margin: 5px;
   display: none; /* Hide the circles initially */
 }
@@ -181,7 +164,14 @@ input[type='text'] {
 }
 
 .team-text {
-  color: white;
   text-align: center;
   margin-bottom: 10px;
+}
+
+#team-text-one {
+  color: green;
+}
+
+#team-text-two {
+  color: red;
 }

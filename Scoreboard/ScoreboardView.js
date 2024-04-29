@@ -9,8 +9,8 @@ export default class ScoreboardView {
         <div class="scoreboard__score" data-for-player="two">0</div>
         <div id="team-one" class="team">
           <div class="team-texts">
-            <div class="team-text">La bataie</div>
-            <div class="team-text">La prindere</div>
+            <div id="team-text-one" class="team-text">La bataie</div>
+            <div id="team-text-two" class="team-text">La prindere</div>
           </div>
           <div class="team-circles">
             ${Array(11).fill('<div class="player-circle">0</div>').join('')}
@@ -22,8 +22,8 @@ export default class ScoreboardView {
         <div id="round-indicator" class="round-indicator">R2</div>
         <div id="team-two" class="team">
           <div class="team-texts">
-            <div class="team-text">La bataie</div>
-            <div class="team-text">La prindere</div>
+            <div id="team-text-one" class="team-text">La bataie</div>
+            <div id="team-text-two" class="team-text">La prindere</div>
           </div>
           <div class="team-circles">
             ${Array(11).fill('<div class="player-circle">0</div>').join('')}
