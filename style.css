@@ -3,15 +3,33 @@ body {
   font-family: 'Courier New', Courier, monospace;
 }
 
+.teams-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.round-indicator {
+  color: white;
+  text-align: center;
+  margin: 10px 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .scoreboard {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  position: relative;
 }
 
 .scoreboard__name,
 .scoreboard__score {
-  padding: 10px;
+  padding: 20px;
   text-align: center;
+  font-size: max(5vw, 36px);
 }
 
 .scoreboard__name {
@@ -21,16 +39,16 @@ body {
 }
 
 .scoreboard__name--one {
-  color: #009578;
+  color: whitesmoke;
 }
 
 .scoreboard__name--two {
-  color: #2d0095;
+  color: whitesmoke;
 }
 
 .scoreboard__score {
   color: whitesmoke;
-  font-size: 2em;
+  font-size: 5em;
 }
 
 .scoreboard__controls {
@@ -50,18 +68,29 @@ body {
 .team {
   position: relative;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team-text {
+  color: white;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.team-circles {
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
-
 .team:not(.active) .player-circle {
   display: none;
 }
 
 .player-circle {
   position: relative;
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background-color: #008000;
   margin: 5px;
@@ -98,4 +127,61 @@ input[type='text'] {
   background-color: transparent;
   border: none;
   outline: none;
+}
+
+.outline-circle-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.outline-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid white;
+  margin: 5px;
+  display: none; /* Hide the circles initially */
+}
+
+/* Place the circles in the correct grid cells */
+.outline-circle:nth-child(1) {
+  grid-area: 2 / 1;
+}
+.outline-circle:nth-child(2) {
+  grid-area: 1 / 2;
+}
+.outline-circle:nth-child(3) {
+  grid-area: 2 / 2;
+}
+.outline-circle:nth-child(4) {
+  grid-area: 3 / 2;
+}
+.outline-circle:nth-child(5) {
+  grid-area: 1 / 3;
+}
+.outline-circle:nth-child(6) {
+  grid-area: 2 / 3;
+}
+.outline-circle:nth-child(7) {
+  grid-area: 3 / 3;
+}
+.outline-circle:nth-child(8) {
+  grid-area: 1 / 4;
+}
+.outline-circle:nth-child(9) {
+  grid-area: 2 / 4;
+}
+.outline-circle:nth-child(10) {
+  grid-area: 3 / 4;
+}
+.outline-circle:nth-child(11) {
+  grid-area: 2 / 5;
+}
+
+.team-text {
+  color: white;
+  text-align: center;
+  margin-bottom: 10px;
 }

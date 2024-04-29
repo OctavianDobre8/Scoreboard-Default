@@ -24,10 +24,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   );
 
-  let teamOneAttacks = 0;
-  let teamTwoAttacks = 0;
   let currentTeamOneCircle = 0;
   let currentTeamTwoCircle = 0;
+
+  function switchTexts() {
+    const teamOne = document.getElementById('team-one');
+    const teamTwo = document.getElementById('team-two');
+
+    // Show and hide the texts
+    const teamOneTexts = teamOne.querySelectorAll('.team-text');
+    teamOneTexts[0].style.display = teamOne.classList.contains('active')
+      ? 'block'
+      : 'none';
+    teamOneTexts[1].style.display = teamOne.classList.contains('active')
+      ? 'none'
+      : 'block';
+
+    const teamTwoTexts = teamTwo.querySelectorAll('.team-text');
+    teamTwoTexts[0].style.display = teamTwo.classList.contains('active')
+      ? 'block'
+      : 'none';
+    teamTwoTexts[1].style.display = teamTwo.classList.contains('active')
+      ? 'none'
+      : 'block';
+  }
 
   function switchTeams() {
     const teamOne = document.getElementById('team-one');
@@ -37,16 +57,48 @@ document.addEventListener('DOMContentLoaded', () => {
     teamOne.classList.toggle('active');
     teamTwo.classList.toggle('active');
 
+    // Switch the texts
+    switchTexts();
+
+    // Show the outline circles for the non-active team and hide them for the active team
+    teamOne.querySelectorAll('.outline-circle').forEach(circle => {
+      circle.style.display = teamOne.classList.contains('active')
+        ? 'none'
+        : 'flex';
+    });
+    teamTwo.querySelectorAll('.outline-circle').forEach(circle => {
+      circle.style.display = teamTwo.classList.contains('active')
+        ? 'none'
+        : 'flex';
+    });
+
     // Reset the current active circle for the new active team
     if (teamOne.classList.contains('active')) {
       currentTeamTwoCircle = 0;
     } else {
       currentTeamOneCircle = 0;
     }
+    // Update the round indicator
+    const roundIndicator = document.getElementById('round-indicator');
+    const currentRound = roundIndicator.textContent;
+    const nextRound = currentRound === 'R1' ? 'R2' : 'R1';
+    roundIndicator.textContent = nextRound;
   }
 
-  // Make the first team active initially
-  document.getElementById('team-one').classList.add('active');
+  document
+    .getElementById('team-two')
+    .querySelectorAll('.outline-circle')
+    .forEach(circle => {
+      circle.style.display = 'flex';
+    });
+
+  // Call switchTexts after the ScoreboardView is instantiated
+  switchTexts();
+
+  document.getElementById('team-two').classList.add('active');
+
+  // Call switchTeams to initialize the teams
+  switchTeams();
 
   // Add event listener to the "Edit Numbers" button
   document.getElementById('edit-numbers').addEventListener('click', () => {
@@ -118,7 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
-
   // Add keydown event listener
   document.addEventListener('keydown', event => {
     if (event.key === 'e') {

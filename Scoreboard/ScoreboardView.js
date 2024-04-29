@@ -8,10 +8,29 @@ export default class ScoreboardView {
         <div class="scoreboard__score" data-for-player="one">0</div>
         <div class="scoreboard__score" data-for-player="two">0</div>
         <div id="team-one" class="team">
-          ${Array(11).fill('<div class="player-circle">0</div>').join('')}
+          <div class="team-texts">
+            <div class="team-text">La bataie</div>
+            <div class="team-text">La prindere</div>
+          </div>
+          <div class="team-circles">
+            ${Array(11).fill('<div class="player-circle">0</div>').join('')}
+            <div class="outline-circle-container">
+              ${Array(11).fill('<div class="outline-circle"></div>').join('')}
+            </div>
+          </div>
         </div>
+        <div id="round-indicator" class="round-indicator">R2</div>
         <div id="team-two" class="team">
-          ${Array(11).fill('<div class="player-circle">0</div>').join('')}
+          <div class="team-texts">
+            <div class="team-text">La bataie</div>
+            <div class="team-text">La prindere</div>
+          </div>
+          <div class="team-circles">
+            ${Array(11).fill('<div class="player-circle">0</div>').join('')}
+            <div class="outline-circle-container">
+              ${Array(11).fill('<div class="outline-circle"></div>').join('')}
+            </div>
+          </div>
         </div>
         <button id="edit-numbers">Editeaza Numerele</button>
         <button id="save-numbers">Salveaza</button>
