@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Switch the texts
     switchTexts();
 
+
     // Show the outline circles for the non-active team and hide them for the active team
     teamOne.querySelectorAll('.outline-circle').forEach(circle => {
       circle.style.display = teamOne.classList.contains('active')
@@ -163,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const newName = document.createElement('div');
           newName.className = 'scoreboard__name';
           newName.textContent = textbox.value;
-          newName.style.color = 'white'; // Set the text color
+          newName.style.color = '#2E8B57'; // Set the text color
 
           textbox.parentNode.replaceChild(newName, textbox);
         }
@@ -179,6 +180,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       editButton.style.display = isHidden ? 'block' : 'none';
       saveButton.style.display = isHidden ? 'block' : 'none';
+
+      // Stop the propagation of the event
+      event.stopPropagation();
     }
     // Check which key was pressed
     if (event.key === 'ArrowUp') {
