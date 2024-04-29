@@ -26,46 +26,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let teamOneAttacks = 0;
   let teamTwoAttacks = 0;
+  let currentTeamOneCircle = 0;
+  let currentTeamTwoCircle = 0;
 
-  // Function to setup event listeners for the circles
-  function setupCircleEventListeners() {
-    // Add event listeners to the circles
-    document.querySelectorAll('.player-circle').forEach(circle => {
-      circle.addEventListener('click', () => {
-        // Only change the circle if it belongs to the active team
-        if (circle.parentNode.classList.contains('active')) {
-          circle.style.backgroundColor = 'red';
-          // Increment the attack count for the active team
-          if (circle.parentNode.id === 'team-one') {
-            teamOneAttacks++;
-          } else {
-            teamTwoAttacks++;
-          }
-
-          // Switch the active team if all players have attacked
-          if (teamOneAttacks >= 11 || teamTwoAttacks >= 11) {
-            switchTeams();
-          }
-        }
-      });
-    });
-  }
-
-  // Call the function at the beginning
-  setupCircleEventListeners();
-
-  // The function to switch teams
   function switchTeams() {
     const teamOne = document.getElementById('team-one');
     const teamTwo = document.getElementById('team-two');
+
+    // Toggle the active class
     teamOne.classList.toggle('active');
     teamTwo.classList.toggle('active');
 
-    // Reset the attack count for the new active team
+    // Reset the current active circle for the new active team
     if (teamOne.classList.contains('active')) {
-      teamTwoAttacks = 0;
+      currentTeamTwoCircle = 0;
     } else {
-      teamOneAttacks = 0;
+      currentTeamOneCircle = 0;
     }
   }
 
@@ -145,6 +121,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Add keydown event listener
   document.addEventListener('keydown', event => {
+    if (event.key === 'e') {
+      const editButton = document.getElementById('edit-numbers');
+      const saveButton = document.getElementById('save-numbers');
+      const isHidden = editButton.style.display === 'none';
+
+      editButton.style.display = isHidden ? 'block' : 'none';
+      saveButton.style.display = isHidden ? 'block' : 'none';
+    }
     // Check which key was pressed
     if (event.key === 'ArrowUp') {
       // Increment the score of the first team
@@ -158,6 +142,36 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (event.key === 'ArrowLeft') {
       // Decrement the score of the second team, but don't go below zero
       playerTwoScore = Math.max(playerTwoScore - 1, 0);
+    }
+
+    if (event.key === 'l') {
+      // Get the active team and the current active circle for that team
+      const activeTeam = document.querySelector('.team.active');
+      const activeTeamId = activeTeam.id;
+      const currentCircle =
+        activeTeamId === 'team-one'
+          ? currentTeamOneCircle
+          : currentTeamTwoCircle;
+
+      // Get the circle elements for the active team
+      const circles = activeTeam.querySelectorAll('.player-circle');
+
+      // If the current active circle is less than the number of circles, change its color
+      if (currentCircle < circles.length) {
+        circles[currentCircle].style.backgroundColor = 'red';
+
+        // Increment the current active circle for the active team
+        if (activeTeamId === 'team-one') {
+          currentTeamOneCircle++;
+        } else {
+          currentTeamTwoCircle++;
+        }
+
+        // Switch the active team if all players have attacked
+        if (currentTeamOneCircle >= 11 || currentTeamTwoCircle >= 11) {
+          switchTeams();
+        }
+      }
     }
 
     // Update the view with the new scores
