@@ -57,6 +57,14 @@ body {
   align-items: center;
 }
 
+#team-text-one{
+  font-size:3vw;
+}
+
+#team-text-two{
+  font-size:3vw;
+}
+
 .team-circles {
   display: flex;
   flex-direction: row;
