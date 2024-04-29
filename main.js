@@ -142,4 +142,25 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+  // Add keydown event listener
+  document.addEventListener('keydown', event => {
+    // Check which key was pressed
+    if (event.key === 'ArrowUp') {
+      // Increment the score of the first team
+      playerOneScore = playerOneScore + 1;
+    } else if (event.key === 'ArrowDown') {
+      // Decrement the score of the first team, but don't go below zero
+      playerOneScore = Math.max(playerOneScore - 1, 0);
+    } else if (event.key === 'ArrowRight') {
+      // Increment the score of the second team
+      playerTwoScore = playerTwoScore + 1;
+    } else if (event.key === 'ArrowLeft') {
+      // Decrement the score of the second team, but don't go below zero
+      playerTwoScore = Math.max(playerTwoScore - 1, 0);
+    }
+
+    // Update the view with the new scores
+    view.update(playerOneScore, playerTwoScore);
+  });
 });
